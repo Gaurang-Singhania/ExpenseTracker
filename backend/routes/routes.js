@@ -5,7 +5,7 @@ const expenseController = require('../controllers/expenseController');
 
 // User Routes
 router.post('/createUser', userController.createUser);
-router.get('/loadUser', userController.loadUser);
+router.post('/loadUser', userController.loadUser);
 router.post('/loginUser', userController.loginUser);
 router.post('/updateBudget', userController.updateBudget);
 router.post('/loadStats', userController.loadStats);

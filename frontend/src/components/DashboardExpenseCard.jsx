@@ -17,7 +17,7 @@ const DashboardExpenseCard = ({ name, amount, category, date }) => {
           <h2 className="text-lg font-semibold overflow-hidden overflow-ellipsis whitespace-nowrap text-white" style={{ maxWidth: 'calc(100% - 2.5rem)' }}>
             {name}
           </h2>
-          <div className="flex justify-between mt-2 text-xl"> {/* Adjust mt-2 to control spacing */}
+          <div className="flex justify-between mt-2 text-lg"> {/* Adjust mt-2 to control spacing */}
             <p className="text-white">Cost: ₹ {amount}</p>
             <span className="bg-white px-2 py-1 rounded-2xl text-black text-sm">
               {category}

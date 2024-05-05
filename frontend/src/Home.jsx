@@ -30,8 +30,8 @@ const icons = {
 };
 
 const Home = () => {
-  const [cookies, setCookie, removeCookie] = useCookies();
-  const [userId, setUserId] = useState("6633bbd36fd2d779dd6b6245");
+  const [cookies, setCookie, removeCookie] = useCookies(["userId"]);
+  const [userId, setUserId] = useState(cookies.userId);
   const [stats, setStats] = useState(null);
   const [expenses, setExpenses] = useState(null);
   const [userName, setUserName] = useState(null); 
@@ -79,7 +79,7 @@ const Home = () => {
 
   return (
     <div className="flex">
-      <div>
+      <div className="flex h-screen">
         <SideBar />
       </div>
       <div className="flex-grow bg-white p-2 m-6" style={{ width: "calc(100% - 300px)" }}>

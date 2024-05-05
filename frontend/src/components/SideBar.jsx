@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { loadUser } from "../Api";
 import { useCookies } from "react-cookie";
@@ -10,12 +10,11 @@ import {
   faCog,
   faUser,
   faSignOutAlt,
+  faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
-
 const Sidebar = () => {
-
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [cookies, setCookie, removeCookie] = useCookies(["userId"]);
   const [userId, setUserId] = useState(cookies.userId);
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -33,8 +32,8 @@ const Sidebar = () => {
 
   const handleLogout = () => {
     removeCookie("userId");
-    navigate("/login", { replace: true });
-  }
+    navigate("/", { replace: true });
+  };
 
   useEffect(() => {
     if (!user) {
@@ -50,48 +49,54 @@ const Sidebar = () => {
 
   return (
     <div className="flex flex-col h-full w-64 bg-black text-white">
-      {" "}
-      {/* Set height to full height */}
       <div className="flex items-center justify-center h-20 border-b border-gray-700">
         <h1 className="text-xl font-semibold">Expense Tracker</h1>
       </div>
       <ul className="flex flex-col p-2">
-        {" "}
-        {/* Reduce padding */}
-        <li className="flex items-center space-x-4 py-3 px-4 rounded-md hover:bg-gray-700 cursor-pointer">
-          {" "}
-          {/* Increase padding */}
-          <FontAwesomeIcon icon={faChartLine} size="lg" />{" "}
-          <span className="text-lg">Dashboard</span> {/* Increase font size */}
+        <li
+          className="flex items-center space-x-4 py-3 px-4 rounded-md hover:bg-gray-700 cursor-pointer"
+          onClick={() => navigate("/dashboard", { replace: true })}
+        >
+          <FontAwesomeIcon icon={faChartLine} size="lg" />
+          <span className="text-lg">Dashboard</span>
         </li>
-        <li className="flex items-center space-x-4 py-3 px-4 rounded-md hover:bg-gray-700 cursor-pointer">
-          {" "}
-          {/* Increase padding */}
-          <FontAwesomeIcon icon={faMoneyBillAlt} size="lg" />{" "}
-          <span className="text-lg">My Expenses</span>{" "}
-          {/* Increase font size */}
+        <li
+          className="flex items-center space-x-4 py-3 px-4 rounded-md hover:bg-gray-700 cursor-pointer"
+          onClick={() => navigate("/myExpense", { replace: true })}
+        >
+          <FontAwesomeIcon icon={faMoneyBillAlt} size="lg" />
+          <span className="text-lg">My Expenses</span>
         </li>
-        <li className="flex items-center space-x-4 py-3 px-4 rounded-md hover:bg-gray-700 cursor-pointer">
-          {" "}
-          {/* Increase padding */}
-          <FontAwesomeIcon icon={faPlus} size="lg" />{" "}
-          <span className="text-lg">Adding New Expense</span>{" "}
-          {/* Increase font size */}
+        <li
+          className="flex items-center space-x-4 py-3 px-4 rounded-md hover:bg-gray-700 cursor-pointer"
+          onClick={() => navigate("/addExpense", { replace: true })}
+        >
+          <FontAwesomeIcon icon={faPlus} size="lg" />
+          <span className="text-lg">Adding New Expense</span>
         </li>
-        <li className="flex items-center space-x-4 py-3 px-4 rounded-md hover:bg-gray-700 cursor-pointer">
-          {" "}
-          {/* Increase padding */}
-          <FontAwesomeIcon icon={faCog} size="lg" />{" "}
-          <span className="text-lg">Setting A Budget</span>{" "}
-          {/* Increase font size */}
+        <li
+          className="flex items-center space-x-4 py-3 px-4 rounded-md hover:bg-gray-700 cursor-pointer"
+          onClick={() => navigate("/setBudget", { replace: true })}
+        >
+          <FontAwesomeIcon icon={faCog} size="lg" />
+          <span className="text-lg">Set A Budget</span>
         </li>
       </ul>
-      <div className="flex flex-col mt-auto p-4 border-t border-gray-700">
-        <div className="flex items-center space-x-2 mr-2">
-          <FontAwesomeIcon icon={faUser} /> <span>User Name</span>
+      <div className="flex flex-col mt-auto p-4 border-t border-gray-500">
+        <div className="flex items-center space-x-2">
+          <div className="h-10 w-10 bg-gray-200 text-black font-bold rounded-full flex justify-center items-center">
+            {getInitials(user == null ? "" : user.username)}
+          </div>
+          <span className="text-lg">
+            {user == null ? "User" : user.username}
+          </span>
         </div>
-        <button className="flex items-center space-x-2 mt-2 py-2 px-4 rounded-md bg-red-600 hover:bg-red-700">
-          <FontAwesomeIcon icon={faSignOutAlt} /> <span>Logout</span>
+        <button
+          className="flex items-center space-x-2 mt-2 py-2 px-4 rounded-md bg-red-600 hover:bg-red-700"
+          onClick={handleLogout} // Call handleLogout on button click
+        >
+          <FontAwesomeIcon icon={user ? faSignOutAlt : faSignInAlt} />
+          <span>{user ? "Logout" : "Log In"}</span>
         </button>
       </div>
     </div>

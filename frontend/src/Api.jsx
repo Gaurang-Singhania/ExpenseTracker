@@ -22,7 +22,7 @@ export const createUser = async (username, email, password) => {
 };
 
 export const loadUser = async (userId) => {
-  return await fetchData(`${SERVER_URL}loadUser`, { id: userId });
+  return await fetchData(`${SERVER_URL}loadUser`, { _id: userId });
 };
 
 export const loginUser = async (email,password) => {
