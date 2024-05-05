@@ -1,4 +1,5 @@
-const SERVER_URL = "http://localhost:3000/api/";
+// const SERVER_URL = "http://localhost:3000/api/";
+const SERVER_URL = "https://expensetracker-m4t6.onrender.com/api/";
 
 const fetchData = async (url, body) => {
   try {
