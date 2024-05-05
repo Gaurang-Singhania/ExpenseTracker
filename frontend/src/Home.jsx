@@ -79,7 +79,7 @@ const Home = () => {
 
   return (
     <div className="flex">
-      <div className="flex h-screen">
+      <div>
         <SideBar />
       </div>
       <div className="flex-grow bg-white p-2 m-6" style={{ width: "calc(100% - 300px)" }}>
