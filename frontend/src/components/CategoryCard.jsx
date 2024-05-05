@@ -18,12 +18,12 @@ const CategoryCard = ({ totalBudget, category, spends, icon }) => {
       : "h-full bg-red-500 rounded-full";
 
   return (
-    <div className="bg-black shadow-md rounded-xl p-6  w-64   my-2 mx-0.5">
+    <div className="bg-black shadow-md rounded-xl p-6 w-80 my-2 mx-0.5">
       <div className="flex items-center mb-4">
         <div className="bg-white rounded-xl w-10 h-10 flex items-center justify-center text-white">
-          <FontAwesomeIcon icon={icon} /> 
+          <FontAwesomeIcon icon={icon} className="text-black" /> 
         </div>
-        <h2 className="ml-4 text-lg font-semibold">{category}</h2>
+        <h2 className="ml-4 text-lg font-semibold text-white">{category}</h2>
       </div>
       <div className="flex flex-col">
         <div className="flex  justify-between mb-4">

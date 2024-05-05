@@ -29,8 +29,8 @@ exports.createUser = async (req, res) => {
 
 exports.loadUser = async (req, res) => {
     try {
-        const { id } = req.body;
-        const user = await User.findById(id);
+        const { _id } = req.query;
+        const user = await User.findById(_id);
 
         if (!user) {    
             return res.status(404).json({
